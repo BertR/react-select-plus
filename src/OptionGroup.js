@@ -5,6 +5,7 @@ const OptionGroup = React.createClass({
 	propTypes: {
 		children: React.PropTypes.any,
 		className: React.PropTypes.string,             // className (based on mouse position)
+		onSelect: React.PropTypes.func,                // method to handle click on option element
 		label: React.PropTypes.node,                   // the heading to show above the child options
 		option: React.PropTypes.object.isRequired,     // object that is base for that option group
 	},
@@ -25,6 +26,7 @@ const OptionGroup = React.createClass({
 	handleMouseDown (event) {
 		event.preventDefault();
 		event.stopPropagation();
+		this.props.onSelect(this.props.option, event);
 	},
 
 	handleTouchEnd(event){

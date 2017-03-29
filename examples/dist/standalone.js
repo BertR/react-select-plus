@@ -807,6 +807,7 @@ var OptionGroup = _react2['default'].createClass({
 	propTypes: {
 		children: _react2['default'].PropTypes.any,
 		className: _react2['default'].PropTypes.string, // className (based on mouse position)
+		clickable: _react2['default'].PropTypes.bool, // should the group option be clickable?
 		onSelect: _react2['default'].PropTypes.func, // method to handle click on option element
 		label: _react2['default'].PropTypes.node, // the heading to show above the child options
 		option: _react2['default'].PropTypes.object.isRequired },
@@ -828,7 +829,9 @@ var OptionGroup = _react2['default'].createClass({
 	handleMouseDown: function handleMouseDown(event) {
 		event.preventDefault();
 		event.stopPropagation();
-		this.props.onSelect(this.props.option, event);
+		if (this.props.clickable) {
+			this.props.onSelect(this.props.option, event);
+		}
 	},
 
 	handleTouchEnd: function handleTouchEnd(event) {
@@ -1058,6 +1061,7 @@ var Select = _react2['default'].createClass({
 		openOnFocus: _react2['default'].PropTypes.bool, // always open options menu on focus
 		optionClassName: _react2['default'].PropTypes.string, // additional class(es) to apply to the <Option /> elements
 		optionComponent: _react2['default'].PropTypes.func, // option component to render in dropdown
+		optionGroupClickable: _react2['default'].PropTypes.bool, // option group component to render in dropdown
 		optionGroupComponent: _react2['default'].PropTypes.func, // option group component to render in dropdown
 		optionRenderer: _react2['default'].PropTypes.func, // optionRenderer: function (option) {}
 		options: _react2['default'].PropTypes.array, // array of options
@@ -1114,6 +1118,7 @@ var Select = _react2['default'].createClass({
 			onCloseResetsInput: true,
 			openAfterFocus: false,
 			optionComponent: _Option2['default'],
+			optionGroupClickable: false,
 			optionGroupComponent: _OptionGroup2['default'],
 			pageSize: 5,
 			placeholder: 'Select...',
@@ -2085,6 +2090,7 @@ var Select = _react2['default'].createClass({
 				onSelect: this.selectValue,
 				optionClassName: this.props.optionClassName,
 				optionComponent: this.props.optionComponent,
+				openGroupClickable: this.props.optionGroupClickable,
 				optionGroupComponent: this.props.optionGroupComponent,
 				onSelectGroup: this.selectGroup,
 				optionRenderer: this.props.optionRenderer || this.getOptionLabel,
@@ -2494,6 +2500,7 @@ function menuRenderer(_ref) {
 	var onSelect = _ref.onSelect;
 	var optionClassName = _ref.optionClassName;
 	var optionComponent = _ref.optionComponent;
+	var optionGroupClickable = _ref.optionGroupClickable;
 	var optionGroupComponent = _ref.optionGroupComponent;
 	var onSelectGroup = _ref.onSelectGroup;
 	var optionRenderer = _ref.optionRenderer;
@@ -2520,6 +2527,7 @@ function menuRenderer(_ref) {
 						label: renderLabel(option),
 						option: option,
 						optionIndex: i,
+						clickable: optionGroupClickable,
 						onSelect: onSelectGroup
 					},
 					renderOptions(option.options)

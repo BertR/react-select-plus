@@ -117,6 +117,7 @@ const Select = React.createClass({
 		openOnFocus: React.PropTypes.bool,          // always open options menu on focus
 		optionClassName: React.PropTypes.string,    // additional class(es) to apply to the <Option /> elements
 		optionComponent: React.PropTypes.func,      // option component to render in dropdown
+		optionGroupClickable: React.PropTypes.bool, // option group component to render in dropdown
 		optionGroupComponent: React.PropTypes.func, // option group component to render in dropdown
 		optionRenderer: React.PropTypes.func,       // optionRenderer: function (option) {}
 		options: React.PropTypes.array,             // array of options
@@ -173,6 +174,7 @@ const Select = React.createClass({
 			onCloseResetsInput: true,
 			openAfterFocus: false,
 			optionComponent: Option,
+			optionGroupClickable: false,
 			optionGroupComponent: OptionGroup,
 			pageSize: 5,
 			placeholder: 'Select...',
@@ -1104,6 +1106,7 @@ const Select = React.createClass({
 				onSelect: this.selectValue,
 				optionClassName: this.props.optionClassName,
 				optionComponent: this.props.optionComponent,
+				openGroupClickable: this.props.optionGroupClickable,
         optionGroupComponent: this.props.optionGroupComponent,
 				onSelectGroup: this.selectGroup,
 				optionRenderer: this.props.optionRenderer || this.getOptionLabel,

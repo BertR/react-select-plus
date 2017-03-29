@@ -680,7 +680,23 @@ const Select = React.createClass({
 		}
 	},
 	selectGroup (value) {
-		console.log("Clicked a group", value);
+		this.hasScrolledToOption = false;
+		if (this.props.multi) {
+			this.setState({
+				inputValue: '',
+				focusedIndex: null
+			}, () => {
+				this.addValue(value);
+			});
+		} else {
+			this.setState({
+				isOpen: false,
+				inputValue: '',
+				isPseudoFocused: this.state.isFocused,
+			}, () => {
+				this.setValue(value);
+			});
+		}
 	},
 
 	addValue (value) {

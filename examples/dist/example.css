@@ -253,7 +253,7 @@
   background-color: #fff;
   color: #666666;
   font-weight: bold;
-  cursor: default;
+  cursor: pointer;
   display: block;
   padding: 8px 10px;
 }

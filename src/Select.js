@@ -1106,7 +1106,7 @@ const Select = React.createClass({
 				onSelect: this.selectValue,
 				optionClassName: this.props.optionClassName,
 				optionComponent: this.props.optionComponent,
-				openGroupClickable: this.props.optionGroupClickable,
+				optionGroupClickable: this.props.optionGroupClickable,
         optionGroupComponent: this.props.optionGroupComponent,
 				onSelectGroup: this.selectGroup,
 				optionRenderer: this.props.optionRenderer || this.getOptionLabel,

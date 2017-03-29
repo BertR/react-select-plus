@@ -679,6 +679,9 @@ const Select = React.createClass({
 			});
 		}
 	},
+	selectGroup (value) {
+		console.log("Clicked a group", value);
+	},
 
 	addValue (value) {
 		var valueArray = this.getValueArray(this.props.value);
@@ -1086,6 +1089,7 @@ const Select = React.createClass({
 				optionClassName: this.props.optionClassName,
 				optionComponent: this.props.optionComponent,
         optionGroupComponent: this.props.optionGroupComponent,
+				onSelectGroup: this.selectGroup,
 				optionRenderer: this.props.optionRenderer || this.getOptionLabel,
 				options,
         selectValue: this.selectValue,

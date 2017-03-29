@@ -15,6 +15,7 @@ function menuRenderer ({
 	optionClassName,
 	optionComponent,
 	optionGroupComponent,
+	onSelectGroup,
 	optionRenderer,
 	options,
 	valueArray,
@@ -38,6 +39,7 @@ function menuRenderer ({
 						label={renderLabel(option)}
 						option={option}
 						optionIndex={i}
+						onSelect={onSelectGroup}
 						>
 						{renderOptions(option.options)}
 					</OptionGroup>

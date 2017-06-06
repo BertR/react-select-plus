@@ -15,7 +15,7 @@ var expect = unexpected
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var TestUtils = require('react-addons-test-utils');
+var TestUtils = require('react-dom/test-utils');
 var Select = require('../src/Select');
 
 describe('Creatable', () => {
@@ -236,5 +236,18 @@ describe('Creatable', () => {
 	it('default :onInputKeyDown should run user provided handler.', (done) => {
 		createControl({ onInputKeyDown: event => done() });
 		return creatableInstance.onInputKeyDown({ keyCode: 97 });
+	});
+
+	describe('.focus()', () => {
+		beforeEach(() => {
+			createControl({});
+			TestUtils.Simulate.blur(filterInputNode);
+		});
+
+		it('focuses the search input', () => {
+			expect(filterInputNode, 'not to equal', document.activeElement);
+			creatableInstance.focus();
+			expect(filterInputNode, 'to equal', document.activeElement);
+		});
 	});
 });
